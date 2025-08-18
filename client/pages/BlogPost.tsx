@@ -104,6 +104,12 @@ export default function BlogPost() {
                 Add Blog
               </Link>
               <Link
+                to="/admin"
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
+                Admin
+              </Link>
+              <Link
                 to="/categories"
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >

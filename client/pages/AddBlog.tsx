@@ -129,6 +129,9 @@ export default function AddBlog() {
               <Link to="/add-blog" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
                 Add Blog
               </Link>
+              <Link to="/admin" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                Admin
+              </Link>
               <Link to="/categories" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
                 Categories
               </Link>
