@@ -9,15 +9,6 @@ import {
   updateBlogPost,
   deleteBlogPost
 } from "./routes/blog";
-import {
-  getAnalytics,
-  getUserStats,
-  getPostsAdmin,
-  updatePostStatus,
-  deletePost,
-  exportData,
-  getDashboardSummary
-} from "./routes/admin";
 
 export function createServer() {
   const app = express();
@@ -41,15 +32,6 @@ export function createServer() {
   app.get("/api/blog/posts/:id", getBlogPostById);
   app.put("/api/blog/posts/:id", updateBlogPost);
   app.delete("/api/blog/posts/:id", deleteBlogPost);
-
-  // Admin API routes
-  app.get("/api/admin/analytics", getAnalytics);
-  app.get("/api/admin/users", getUserStats);
-  app.get("/api/admin/posts", getPostsAdmin);
-  app.put("/api/admin/posts/:id/status", updatePostStatus);
-  app.delete("/api/admin/posts/:id", deletePost);
-  app.get("/api/admin/export/:type", exportData);
-  app.get("/api/admin/dashboard", getDashboardSummary);
 
   return app;
 }
