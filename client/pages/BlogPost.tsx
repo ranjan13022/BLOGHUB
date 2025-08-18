@@ -14,6 +14,7 @@ import {
   Search,
   Menu,
 } from "lucide-react";
+import { SimpleThemeToggle } from "@/components/ui/theme-toggle";
 import { Input } from "@/components/ui/input";
 
 // Mock data for the blog post (in a real app, this would come from an API)
