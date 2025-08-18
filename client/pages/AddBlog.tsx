@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ArrowLeft, Save, Eye, Upload, Plus, X, Mail, Search, Menu } from "lucide-react";
+import { SimpleThemeToggle } from "@/components/ui/theme-toggle";
 import { toast } from "@/hooks/use-toast";
 
 const categories = ["Technology", "Design", "Writing", "Security", "Business", "Tutorial"];
@@ -146,6 +147,7 @@ export default function AddBlog() {
                   />
                 </div>
               </div>
+              <SimpleThemeToggle />
               <Button variant="outline" size="sm">
                 <Mail className="h-4 w-4 mr-2" />
                 Subscribe

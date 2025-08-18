@@ -123,6 +123,7 @@ export default function BlogPost() {
                   <Input placeholder="Search posts..." className="pl-10 w-64" />
                 </div>
               </div>
+              <SimpleThemeToggle />
               <Button variant="outline" size="sm">
                 <Mail className="h-4 w-4 mr-2" />
                 Subscribe
