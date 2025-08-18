@@ -11,6 +11,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CalendarDays, Clock, User, Mail, Search, Menu } from "lucide-react";
+import { SimpleThemeToggle } from "@/components/ui/theme-toggle";
 
 const blogPosts = [
   {
@@ -137,6 +138,7 @@ export default function Index() {
                   <Input placeholder="Search posts..." className="pl-10 w-64" />
                 </div>
               </div>
+              <SimpleThemeToggle />
               <Button variant="outline" size="sm">
                 <Mail className="h-4 w-4 mr-2" />
                 Subscribe
