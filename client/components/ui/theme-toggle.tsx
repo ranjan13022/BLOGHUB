@@ -32,7 +32,9 @@ export function ThemeToggle() {
           Dark
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("system")}>
-          <span className="mr-2 h-4 w-4 flex items-center justify-center text-xs">⚙️</span>
+          <span className="mr-2 h-4 w-4 flex items-center justify-center text-xs">
+            ⚙️
+          </span>
           System
         </DropdownMenuItem>
       </DropdownMenuContent>

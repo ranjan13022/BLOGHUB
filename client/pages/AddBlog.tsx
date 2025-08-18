@@ -4,22 +4,51 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ArrowLeft, Save, Eye, Upload, Plus, X, Mail, Search, Menu } from "lucide-react";
+import {
+  ArrowLeft,
+  Save,
+  Eye,
+  Upload,
+  Plus,
+  X,
+  Mail,
+  Search,
+  Menu,
+} from "lucide-react";
 import { SimpleThemeToggle } from "@/components/ui/theme-toggle";
 import { toast } from "@/hooks/use-toast";
 
-const categories = ["Technology", "Design", "Writing", "Security", "Business", "Tutorial"];
+const categories = [
+  "Technology",
+  "Design",
+  "Writing",
+  "Security",
+  "Business",
+  "Tutorial",
+];
 
 export default function AddBlog() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("write");
-  
+
   // Form state
   const [formData, setFormData] = useState({
     title: "",
@@ -31,33 +60,33 @@ export default function AddBlog() {
     author: {
       name: "Current User",
       avatar: "/placeholder.svg",
-      initials: "CU"
-    }
+      initials: "CU",
+    },
   });
-  
+
   const [newTag, setNewTag] = useState("");
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
   const addTag = () => {
     if (newTag.trim() && !formData.tags.includes(newTag.trim())) {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        tags: [...prev.tags, newTag.trim()]
+        tags: [...prev.tags, newTag.trim()],
       }));
       setNewTag("");
     }
   };
 
   const removeTag = (tagToRemove: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      tags: prev.tags.filter(tag => tag !== tagToRemove)
+      tags: prev.tags.filter((tag) => tag !== tagToRemove),
     }));
   };
 
@@ -88,8 +117,8 @@ export default function AddBlog() {
       if (response.ok) {
         toast({
           title: isDraft ? "Draft saved!" : "Post published!",
-          description: isDraft 
-            ? "Your blog post has been saved as a draft." 
+          description: isDraft
+            ? "Your blog post has been saved as a draft."
             : "Your blog post has been published successfully.",
         });
         navigate("/");
@@ -118,21 +147,36 @@ export default function AddBlog() {
                 Blog<span className="text-foreground">Hub</span>
               </Link>
             </div>
-            
+
             <nav className="hidden md:flex items-center space-x-8">
-              <Link to="/" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+              <Link
+                to="/"
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
                 Home
               </Link>
-              <Link to="/posts" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+              <Link
+                to="/posts"
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
                 All Posts
               </Link>
-              <Link to="/add-blog" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              <Link
+                to="/add-blog"
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              >
                 Add Blog
               </Link>
-              <Link to="/categories" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+              <Link
+                to="/categories"
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
                 Categories
               </Link>
-              <Link to="/about" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+              <Link
+                to="/about"
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
                 About
               </Link>
             </nav>
@@ -141,10 +185,7 @@ export default function AddBlog() {
               <div className="hidden sm:flex items-center">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    placeholder="Search posts..."
-                    className="pl-10 w-64"
-                  />
+                  <Input placeholder="Search posts..." className="pl-10 w-64" />
                 </div>
               </div>
               <SimpleThemeToggle />
@@ -164,7 +205,10 @@ export default function AddBlog() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
         <div className="mb-8">
-          <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors">
+          <Link
+            to="/"
+            className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors"
+          >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to home
           </Link>
@@ -173,7 +217,9 @@ export default function AddBlog() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-2">Create New Blog Post</h1>
+            <h1 className="text-3xl font-bold text-foreground mb-2">
+              Create New Blog Post
+            </h1>
             <p className="text-muted-foreground">
               Share your insights and stories with the BlogHub community.
             </p>
@@ -185,7 +231,7 @@ export default function AddBlog() {
               <TabsTrigger value="write">Write</TabsTrigger>
               <TabsTrigger value="preview">Preview</TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="write" className="space-y-6">
               {/* Blog Form */}
               <div className="grid lg:grid-cols-3 gap-8">
@@ -195,7 +241,8 @@ export default function AddBlog() {
                     <CardHeader>
                       <CardTitle>Post Content</CardTitle>
                       <CardDescription>
-                        Write your blog post content and provide essential details.
+                        Write your blog post content and provide essential
+                        details.
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-6">
@@ -206,7 +253,9 @@ export default function AddBlog() {
                           id="title"
                           placeholder="Enter your blog post title..."
                           value={formData.title}
-                          onChange={(e) => handleInputChange("title", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("title", e.target.value)
+                          }
                           className="text-lg"
                         />
                       </div>
@@ -218,11 +267,14 @@ export default function AddBlog() {
                           id="excerpt"
                           placeholder="Write a brief summary of your post..."
                           value={formData.excerpt}
-                          onChange={(e) => handleInputChange("excerpt", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("excerpt", e.target.value)
+                          }
                           rows={3}
                         />
                         <p className="text-xs text-muted-foreground">
-                          This will be shown in post previews and social media shares.
+                          This will be shown in post previews and social media
+                          shares.
                         </p>
                       </div>
 
@@ -233,7 +285,9 @@ export default function AddBlog() {
                           id="content"
                           placeholder="Write your blog post content here..."
                           value={formData.content}
-                          onChange={(e) => handleInputChange("content", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("content", e.target.value)
+                          }
                           rows={20}
                           className="font-mono text-sm"
                         />
@@ -254,17 +308,17 @@ export default function AddBlog() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="flex space-x-2">
-                        <Button 
-                          onClick={() => handleSubmit(true)} 
-                          variant="outline" 
+                        <Button
+                          onClick={() => handleSubmit(true)}
+                          variant="outline"
                           className="flex-1"
                           disabled={isLoading}
                         >
                           <Save className="h-4 w-4 mr-2" />
                           Save Draft
                         </Button>
-                        <Button 
-                          onClick={() => handleSubmit(false)} 
+                        <Button
+                          onClick={() => handleSubmit(false)}
                           className="flex-1"
                           disabled={isLoading}
                         >
@@ -280,7 +334,12 @@ export default function AddBlog() {
                       <CardTitle>Category</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <Select value={formData.category} onValueChange={(value) => handleInputChange("category", value)}>
+                      <Select
+                        value={formData.category}
+                        onValueChange={(value) =>
+                          handleInputChange("category", value)
+                        }
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Select a category" />
                         </SelectTrigger>
@@ -306,17 +365,23 @@ export default function AddBlog() {
                           placeholder="Add a tag..."
                           value={newTag}
                           onChange={(e) => setNewTag(e.target.value)}
-                          onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), addTag())}
+                          onKeyPress={(e) =>
+                            e.key === "Enter" && (e.preventDefault(), addTag())
+                          }
                         />
                         <Button onClick={addTag} size="sm" variant="outline">
                           <Plus className="h-4 w-4" />
                         </Button>
                       </div>
-                      
+
                       {formData.tags.length > 0 && (
                         <div className="flex flex-wrap gap-2">
                           {formData.tags.map((tag) => (
-                            <Badge key={tag} variant="secondary" className="flex items-center gap-1">
+                            <Badge
+                              key={tag}
+                              variant="secondary"
+                              className="flex items-center gap-1"
+                            >
                               {tag}
                               <button
                                 onClick={() => removeTag(tag)}
@@ -349,7 +414,9 @@ export default function AddBlog() {
                       <Input
                         placeholder="Or enter image URL..."
                         value={formData.featuredImage}
-                        onChange={(e) => handleInputChange("featuredImage", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("featuredImage", e.target.value)
+                        }
                       />
                     </CardContent>
                   </Card>
@@ -372,32 +439,45 @@ export default function AddBlog() {
                     <header>
                       <div className="flex items-center mb-4">
                         {formData.category && (
-                          <Badge variant="secondary" className="mr-4">{formData.category}</Badge>
+                          <Badge variant="secondary" className="mr-4">
+                            {formData.category}
+                          </Badge>
                         )}
                         <span className="text-sm text-muted-foreground">
-                          {new Date().toLocaleDateString()} • 
-                          {Math.ceil(formData.content.split(' ').length / 200)} min read
+                          {new Date().toLocaleDateString()} •
+                          {Math.ceil(formData.content.split(" ").length / 200)}{" "}
+                          min read
                         </span>
                       </div>
-                      
+
                       <h1 className="text-3xl font-bold text-foreground mb-4">
-                        {formData.title || "Your blog post title will appear here"}
+                        {formData.title ||
+                          "Your blog post title will appear here"}
                       </h1>
-                      
+
                       {formData.excerpt && (
                         <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                           {formData.excerpt}
                         </p>
                       )}
-                      
+
                       <div className="flex items-center mb-6">
                         <Avatar className="h-10 w-10 mr-3">
-                          <AvatarImage src={formData.author.avatar} alt={formData.author.name} />
-                          <AvatarFallback>{formData.author.initials}</AvatarFallback>
+                          <AvatarImage
+                            src={formData.author.avatar}
+                            alt={formData.author.name}
+                          />
+                          <AvatarFallback>
+                            {formData.author.initials}
+                          </AvatarFallback>
                         </Avatar>
                         <div>
-                          <p className="font-medium text-foreground">{formData.author.name}</p>
-                          <p className="text-sm text-muted-foreground">Author</p>
+                          <p className="font-medium text-foreground">
+                            {formData.author.name}
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            Author
+                          </p>
                         </div>
                       </div>
                     </header>
@@ -405,8 +485,8 @@ export default function AddBlog() {
                     {/* Featured Image Preview */}
                     {formData.featuredImage && (
                       <div className="aspect-video bg-muted rounded-lg overflow-hidden mb-6">
-                        <img 
-                          src={formData.featuredImage} 
+                        <img
+                          src={formData.featuredImage}
                           alt={formData.title}
                           className="w-full h-full object-cover"
                         />
@@ -415,9 +495,11 @@ export default function AddBlog() {
 
                     {/* Content Preview */}
                     <div className="prose prose-lg max-w-none">
-                      <div 
-                        dangerouslySetInnerHTML={{ 
-                          __html: formData.content || "<p class='text-muted-foreground'>Your blog post content will appear here...</p>" 
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html:
+                            formData.content ||
+                            "<p class='text-muted-foreground'>Your blog post content will appear here...</p>",
                         }}
                         className="text-foreground leading-relaxed space-y-4"
                       />
@@ -426,7 +508,9 @@ export default function AddBlog() {
                     {/* Tags Preview */}
                     {formData.tags.length > 0 && (
                       <div className="pt-6 border-t border-border">
-                        <h3 className="text-lg font-semibold text-foreground mb-3">Tags</h3>
+                        <h3 className="text-lg font-semibold text-foreground mb-3">
+                          Tags
+                        </h3>
                         <div className="flex flex-wrap gap-2">
                           {formData.tags.map((tag) => (
                             <Badge key={tag} variant="outline">

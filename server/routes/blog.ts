@@ -35,13 +35,13 @@ export const createBlogPost: RequestHandler = (req, res) => {
       featuredImage,
       author,
       status,
-      publishedAt
+      publishedAt,
     } = req.body;
 
     // Validation
     if (!title || !content) {
       return res.status(400).json({
-        error: "Title and content are required"
+        error: "Title and content are required",
       });
     }
 
@@ -57,12 +57,12 @@ export const createBlogPost: RequestHandler = (req, res) => {
       author: author || {
         name: "Anonymous",
         avatar: "/placeholder.svg",
-        initials: "AN"
+        initials: "AN",
       },
       status: status || "published",
       publishedAt: publishedAt || null,
       createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      updatedAt: new Date().toISOString(),
     };
 
     // Add to storage
@@ -70,12 +70,12 @@ export const createBlogPost: RequestHandler = (req, res) => {
 
     res.status(201).json({
       success: true,
-      post: newPost
+      post: newPost,
     });
   } catch (error) {
     console.error("Error creating blog post:", error);
     res.status(500).json({
-      error: "Internal server error"
+      error: "Internal server error",
     });
   }
 };
@@ -84,24 +84,26 @@ export const createBlogPost: RequestHandler = (req, res) => {
 export const getAllBlogPosts: RequestHandler = (req, res) => {
   try {
     const { status, category, limit } = req.query;
-    
+
     let filteredPosts = [...blogPosts];
 
     // Filter by status
     if (status) {
-      filteredPosts = filteredPosts.filter(post => post.status === status);
+      filteredPosts = filteredPosts.filter((post) => post.status === status);
     }
 
     // Filter by category
     if (category) {
-      filteredPosts = filteredPosts.filter(post => 
-        post.category.toLowerCase() === (category as string).toLowerCase()
+      filteredPosts = filteredPosts.filter(
+        (post) =>
+          post.category.toLowerCase() === (category as string).toLowerCase(),
       );
     }
 
     // Sort by creation date (newest first)
-    filteredPosts.sort((a, b) => 
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    filteredPosts.sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     );
 
     // Limit results
@@ -115,12 +117,12 @@ export const getAllBlogPosts: RequestHandler = (req, res) => {
     res.json({
       success: true,
       posts: filteredPosts,
-      total: filteredPosts.length
+      total: filteredPosts.length,
     });
   } catch (error) {
     console.error("Error fetching blog posts:", error);
     res.status(500).json({
-      error: "Internal server error"
+      error: "Internal server error",
     });
   }
 };
@@ -133,26 +135,26 @@ export const getBlogPostById: RequestHandler = (req, res) => {
 
     if (isNaN(postId)) {
       return res.status(400).json({
-        error: "Invalid post ID"
+        error: "Invalid post ID",
       });
     }
 
-    const post = blogPosts.find(p => p.id === postId);
+    const post = blogPosts.find((p) => p.id === postId);
 
     if (!post) {
       return res.status(404).json({
-        error: "Blog post not found"
+        error: "Blog post not found",
       });
     }
 
     res.json({
       success: true,
-      post
+      post,
     });
   } catch (error) {
     console.error("Error fetching blog post:", error);
     res.status(500).json({
-      error: "Internal server error"
+      error: "Internal server error",
     });
   }
 };
@@ -165,15 +167,15 @@ export const updateBlogPost: RequestHandler = (req, res) => {
 
     if (isNaN(postId)) {
       return res.status(400).json({
-        error: "Invalid post ID"
+        error: "Invalid post ID",
       });
     }
 
-    const postIndex = blogPosts.findIndex(p => p.id === postId);
+    const postIndex = blogPosts.findIndex((p) => p.id === postId);
 
     if (postIndex === -1) {
       return res.status(404).json({
-        error: "Blog post not found"
+        error: "Blog post not found",
       });
     }
 
@@ -182,19 +184,19 @@ export const updateBlogPost: RequestHandler = (req, res) => {
       ...blogPosts[postIndex],
       ...req.body,
       id: postId, // Ensure ID doesn't change
-      updatedAt: new Date().toISOString()
+      updatedAt: new Date().toISOString(),
     };
 
     blogPosts[postIndex] = updatedPost;
 
     res.json({
       success: true,
-      post: updatedPost
+      post: updatedPost,
     });
   } catch (error) {
     console.error("Error updating blog post:", error);
     res.status(500).json({
-      error: "Internal server error"
+      error: "Internal server error",
     });
   }
 };
@@ -207,15 +209,15 @@ export const deleteBlogPost: RequestHandler = (req, res) => {
 
     if (isNaN(postId)) {
       return res.status(400).json({
-        error: "Invalid post ID"
+        error: "Invalid post ID",
       });
     }
 
-    const postIndex = blogPosts.findIndex(p => p.id === postId);
+    const postIndex = blogPosts.findIndex((p) => p.id === postId);
 
     if (postIndex === -1) {
       return res.status(404).json({
-        error: "Blog post not found"
+        error: "Blog post not found",
       });
     }
 
@@ -225,12 +227,12 @@ export const deleteBlogPost: RequestHandler = (req, res) => {
     res.json({
       success: true,
       message: "Blog post deleted successfully",
-      post: deletedPost
+      post: deletedPost,
     });
   } catch (error) {
     console.error("Error deleting blog post:", error);
     res.status(500).json({
-      error: "Internal server error"
+      error: "Internal server error",
     });
   }
 };

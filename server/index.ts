@@ -7,7 +7,7 @@ import {
   getAllBlogPosts,
   getBlogPostById,
   updateBlogPost,
-  deleteBlogPost
+  deleteBlogPost,
 } from "./routes/blog";
 
 export function createServer() {
