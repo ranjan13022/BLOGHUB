@@ -2,6 +2,13 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
+import {
+  createBlogPost,
+  getAllBlogPosts,
+  getBlogPostById,
+  updateBlogPost,
+  deleteBlogPost
+} from "./routes/blog";
 
 export function createServer() {
   const app = express();
@@ -18,6 +25,13 @@ export function createServer() {
   });
 
   app.get("/api/demo", handleDemo);
+
+  // Blog API routes
+  app.post("/api/blog/create", createBlogPost);
+  app.get("/api/blog/posts", getAllBlogPosts);
+  app.get("/api/blog/posts/:id", getBlogPostById);
+  app.put("/api/blog/posts/:id", updateBlogPost);
+  app.delete("/api/blog/posts/:id", deleteBlogPost);
 
   return app;
 }
