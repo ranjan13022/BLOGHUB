@@ -10,11 +10,11 @@ interface PlaceholderPageProps {
   backLinkText?: string;
 }
 
-export default function PlaceholderPage({ 
-  title, 
-  description, 
-  backLink = "/", 
-  backLinkText = "Back to home" 
+export default function PlaceholderPage({
+  title,
+  description,
+  backLink = "/",
+  backLinkText = "Back to home",
 }: PlaceholderPageProps) {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
@@ -28,20 +28,21 @@ export default function PlaceholderPage({
           <CardTitle className="text-2xl">{title}</CardTitle>
         </CardHeader>
         <CardContent className="text-center space-y-6">
-          <p className="text-muted-foreground leading-relaxed">
-            {description}
-          </p>
-          
+          <p className="text-muted-foreground leading-relaxed">{description}</p>
+
           <div className="p-4 bg-muted/30 rounded-lg">
             <div className="flex items-center justify-center mb-3">
               <MessageCircle className="h-5 w-5 text-primary mr-2" />
-              <span className="font-medium text-foreground">Want this page implemented?</span>
+              <span className="font-medium text-foreground">
+                Want this page implemented?
+              </span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Continue prompting in the chat to have this page built with the content and functionality you need.
+              Continue prompting in the chat to have this page built with the
+              content and functionality you need.
             </p>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link to={backLink}>
               <Button variant="outline" className="w-full sm:w-auto">
@@ -49,9 +50,7 @@ export default function PlaceholderPage({
                 {backLinkText}
               </Button>
             </Link>
-            <Button className="w-full sm:w-auto">
-              Request Implementation
-            </Button>
+            <Button className="w-full sm:w-auto">Request Implementation</Button>
           </div>
         </CardContent>
       </Card>
